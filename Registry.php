@@ -301,12 +301,11 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
      * Load json data from string
      *
      * @param string $data
-     * @param array $options
      *
      * @return $this
      *
      */
-    public function loadString(string $data, array $options = array()): self
+    public function loadString(string $data): self
     {
         $obj = json_decode($data);
 
@@ -453,11 +452,10 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     }
 
     /**
-     * Set a registry value.
      *
-     * @param   string  $path       Registry Path
-     * @param   mixed   $value      Value of entry
-     * @param   string|null  $separator  The key separator
+     * @param   string  $path
+     * @param   mixed   $value
+     * @param   string|null  $separator
      *
      * @return  void
      *
@@ -471,10 +469,8 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 
         $nodes = array_values(array_filter(explode($separator, $path), 'strlen'));
 
-        // Initialize the current node to be the registry root.
         $node = $this->data;
 
-        // Traverse the registry to find the correct node for the result.
         for ($i = 0, $n = \count($nodes) - 1; $i < $n; $i++)
         {
             if (\is_object($node))
@@ -497,7 +493,6 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
                     $node[$nodes[$i]] = new \stdClass;
                 }
 
-                // Pass the child as pointer in case it is an array
                 $node = &$node[$nodes[$i]];
             }
         }
@@ -511,10 +506,9 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     }
 
     /**
-     * Append value to a path in registry
      *
-     * @param   string  $path   Parent registry Path
-     * @param   mixed   $value  Value of entry
+     * @param   string  $path
+     * @param   mixed   $value
      *
      * @return  void
      *
@@ -525,10 +519,8 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
 
         if ($nodes)
         {
-            // Initialize the current node to be the registry root.
             $node = $this->data;
 
-            // Traverse the registry to find the correct node for the result.
             for ($i = 0, $n = \count($nodes) - 1; $i <= $n; $i++)
             {
                 if (\is_object($node))
@@ -538,7 +530,6 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
                         $node->{$nodes[$i]} = new \stdClass;
                     }
 
-                    // Pass the child as pointer in case it is an array
                     $node = &$node->{$nodes[$i]};
                 }
                 elseif (\is_array($node))
@@ -548,14 +539,12 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
                         $node[$nodes[$i]] = new \stdClass;
                     }
 
-                    // Pass the child as pointer in case it is an array
                     $node = &$node[$nodes[$i]];
                 }
             }
 
             if (!\is_array($node))
             {
-                // Convert the node to array to make append possible
                 $node = get_object_vars($node);
             }
 
@@ -564,9 +553,8 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     }
 
     /**
-     * Delete a registry value
      *
-     * @param   string  $path  Registry Path
+     * @param   string  $path
      *
      * @return  void
      *
@@ -631,9 +619,8 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     }
 
     /**
-     * Transforms a namespace to an array
      *
-     * @return  array  An associative array holding the namespace data
+     * @return  array
      *
      */
     public function toArray(): array
