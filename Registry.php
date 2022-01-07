@@ -2,7 +2,6 @@
 
 namespace Msgframework\Lib\Registry;
 
-use Joomla\Utilities\ArrayHelper;
 use stdClass;
 
 class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \Countable
@@ -665,7 +664,22 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
                 continue;
             }
 
-            if ($recursive && ((\is_array($v) && ArrayHelper::isAssociative($v)) || \is_object($v)))
+            $isAssoc = function($array) {
+                if (\is_array($array))
+                {
+                    foreach (array_keys($array) as $k => $v)
+                    {
+                        if ($k !== $v)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            };
+
+            if ($recursive && ((\is_array($v) && $isAssoc($v)) || \is_object($v)))
             {
                 if (!isset($parent->$k))
                 {

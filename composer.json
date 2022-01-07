@@ -3,9 +3,7 @@
     "description": "The Registry package provides an indexed key-value data store and an API for importing/exporting this data to several formats.",
     "type": "library",
     "require": {
-        "php": ">=7.4",
-        "joomla/utilities": "~2.0",
-        "joomla/string": "~2.0"
+        "php": ">=7.4"
     },
     "license": "MIT",
     "autoload": {
