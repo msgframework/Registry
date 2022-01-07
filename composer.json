@@ -1,0 +1,26 @@
+{
+    "name": "msgframework/registry",
+    "description": "The Registry package provides an indexed key-value data store and an API for importing/exporting this data to several formats.",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "joomla/utilities": "~2.0",
+        "joomla/string": "~2.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Msgframework\\Lib\\Registry\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "MSGroupFM",
+            "email": "admin@msgru.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "ext-json": "*"
+    }
+}
