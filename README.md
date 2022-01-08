@@ -188,7 +188,7 @@ Array
 )
 ```
 
-##Installation
+## Installation
 
 You can install this package easily with [Composer](https://getcomposer.org/).
 
