@@ -698,12 +698,12 @@ class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \
     /**
      * Method to recursively convert an object of data to an array.
      *
-     * @param   object  $data  An object of data to return as an array.
+     * @param   array|object  $data  An object of data to return as an array.
      *
      * @return  array  Array representation of the input object.
      *
      */
-    protected function asArray(object $data): array
+    protected function asArray($data): array
     {
         $array = [];
 
