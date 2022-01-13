@@ -13,7 +13,7 @@ The Registry package provides an indexed key-value data store and an API for imp
 ## Load Registry
 
 ``` php
-use Joomla\Registry\Registry;
+use Msgframework\Lib\Registry;
 
 $registry = new Registry;
 
